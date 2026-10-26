@@ -1,0 +1,14 @@
+services:
+  fabric:
+    image: minecraft-fabric:${MC_VERSION}-${FABRIC_LOADER_VERSION:-latest}
+    build:
+      context: ./images/fabric
+      args:
+        MC_VERSION: ${MC_VERSION}
+        FABRIC_LOADER_VERSION: ${FABRIC_LOADER_VERSION:-}
+        FABRIC_INSTALLER_VERSION: ${FABRIC_INSTALLER_VERSION:-}
+    ports:
+      - "25565:25565"
+    volumes:
+      - ${DATA_DIR:-./data}:/data
+    restart: unless-stopped
